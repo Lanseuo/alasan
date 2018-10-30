@@ -1,0 +1,2 @@
+class IntentNotFound(BaseException):
+    pass
