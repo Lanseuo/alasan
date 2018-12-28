@@ -1,10 +1,10 @@
 # Alasan
 
-Alasan helps you building Alexa skills on AWS Lambda using Python.
+Alasan helps you build Alexa skills on AWS Lambda using Python.
 
 ## Installation
 
-```
+```shell
 npm install -g serverless
 serverless create --template aws-python3 --path <name-of-your-skill>
 cd <name-of-your-skill>
@@ -14,7 +14,7 @@ sls plugin install -n serverless-python-requirements
 
 serverless.yml
 
-```yml
+```yaml
 service: <name-of-your-skill>
 
 provider:
@@ -58,7 +58,7 @@ def fine_intent(event):
 
 ## Deployment
 
-```
+```shel
 sls deploy
 ```
 
@@ -70,4 +70,3 @@ sls deploy
 
 Lucas Hild - [https://lucas-hild.de](https://lucas-hild.de)  
 This project is licensed under the MIT License - see the LICENSE file for details
-
