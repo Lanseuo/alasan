@@ -19,7 +19,7 @@ class Session:
         self.application = EventProperty()
         self.application.application_id = session_dict["application"]["applicationId"]
         self.user = EventProperty()
-        self.user_id = session_dict["user"]["userId"]
+        self.user.id = session_dict["user"]["userId"]
 
 
 class Context:
@@ -31,7 +31,11 @@ class Context:
         self.system.user = EventProperty()
         self.system.user.user_id = context_dict["System"]["user"]["userId"]
         self.device = EventProperty()
-        self.device.supported_interfaces = "..."
+        self.device.supported_interfaces = [
+            interface
+            for interface
+            in context_dict["System"]["device"]["supportedInterfaces"].keys()
+        ]
 
 
 class Request:
@@ -56,7 +60,6 @@ class Intent:
     def __init__(self, intent_dict):
         self.name = intent_dict["name"]
 
-        # TODO
         if "slots" in intent_dict.keys():
             self.slots = intent_dict["slots"]
         else:

@@ -1,4 +1,4 @@
 from .core import Alasan
-from .response import answer, question
+from .response import Response
 
-__all__ = ["Alasan", "answer", "question"]
+__all__ = ["Alasan", "Response"]

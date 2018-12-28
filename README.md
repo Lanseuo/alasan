@@ -40,18 +40,20 @@ plugins:
 ## Usage
 
 ```python
-from alasan import Alasan, answer, question
+from alasan import Alasan, Response
 
 skill = Alasan()
 
 @skill.launch()
 def launch(event):
-    return question("Hello, how are you?")
+    return Response.speak("Was möchtest Du wissen?")
 
 
 @skill.intent("FineIntent")
 def fine_intent(event):
-    return answern("That's good to hear.")
+    return Response \
+        .speak("That's good to hear.") \
+        .end_session()
 ```
 
 ## Deployment

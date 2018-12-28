@@ -1,5 +1,6 @@
 from .event import Event
 from .errors import IntentNotFound
+from .response import Response
 
 
 class Alasan:
@@ -9,7 +10,7 @@ class Alasan:
         self.on_session_ended_function = lambda x: {}
 
     def __call__(self, event_dict, context):
-        print("IN:", event_dict)
+        print("INPUT:", event_dict)
 
         event = Event(event_dict)
 
@@ -25,8 +26,13 @@ class Alasan:
         elif event.request.type == "SessionEndedRequest":
             response = self.on_session_ended_function(event)
 
-        print("OUT:", response)
-        return response
+        if isinstance(response, Response):
+            response_dict = response.data_dict
+        else:
+            response_dict = response
+
+        print("OUTPUT:", response_dict)
+        return response_dict
 
     def launch(self):
         def wrap(f):

@@ -1,58 +1,51 @@
-def build_response(response, session_attributes):
-    return {
-        "version": "1.0",
-        "response": response,
-        "sessionAttributes": session_attributes
-    }
-
-
-def answer(output, reprompt=None, session_attributes={}, card=None, ssml=False):
-    response = {
-        "outputSpeech": {
-            "type": "PlainText",
-            "text": output
-        },
-        "shouldEndSession": True
-    }
-
-    if reprompt:
-        response["reprompt"] = {
-            "output_speech": {
-                "type": "PlainText",
-                "text": reprompt
+class Response:
+    def __init__(self):
+        self.data_dict = {
+            "version": "1.0",
+            "response": {
+                "shouldEndSession": False,
+                "directives": []
             }
         }
 
-    if card:
-        response["card"] = card
+    def session_attributes(self, session_attributes):
+        self.data_dict["sessionAttributes"] = session_attributes
+        return self
 
-    return build_response(
-        response=response,
-        session_attributes=session_attributes
-    )
-
-
-def question(output, reprompt=None, session_attributes={}, card=None, ssml=False):
-    response = {
-        "outputSpeech": {
-            "type": "PlainText",
-            "text": output
-        },
-        "shouldEndSession": False
-    }
-
-    if reprompt:
-        response["reprompt"] = {
-            "output_speech": {
+    def speak(self, text, ssml=False):
+        if not ssml:
+            self.data_dict["response"]["outputSpeech"] = {
                 "type": "PlainText",
-                "text": reprompt
+                "text": text
             }
-        }
+        else:
+            self.data_dict["response"]["outputSpeech"] = {
+                "type": "SSML",
+                "ssml": text
+            }
+        return self
 
-    if card:
-        response["card"] = card
+    def card(self, card_dict):
+        self.data_dict["response"]["card"] = card_dict
+        return self
 
-    return build_response(
-        response=response,
-        session_attributes=session_attributes
-    )
+    def reprompt(self, text, ssml=False):
+        if not ssml:
+            self.data_dict["response"]["reprompt"] = {
+                "type": "PlainText",
+                "text": text
+            }
+        else:
+            self.data_dict["response"]["reprompt"] = {
+                "type": "SSML",
+                "ssml": text
+            }
+        return self
+
+    def add_directive(self, directive_dict):
+        self.data_dict["directives"].append(directive_dict)
+        return self
+
+    def end_session(self):
+        self.data_dict["response"]["shouldEndSession"] = True
+        return self
