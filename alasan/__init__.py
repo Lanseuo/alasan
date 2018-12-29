@@ -5,6 +5,7 @@ LINK_ACCOUNT = "LinkAccount"
 ASK_FOR_PERMISSIONS_CONSENT = "AskForPermissionsConsent"
 
 from .core import Alasan  # noqa
+from .directives import Dialog  # noqa
 from .response import Response  # noqa
 
-__all__ = ["Alasan", "Response"]
+__all__ = ["Alasan", "Response", "Dialog"]

@@ -46,7 +46,7 @@ skill = Alasan()
 
 @skill.launch()
 def launch(event):
-    return Response.speak("Was möchtest Du wissen?")
+    return Response.speak("Hello, how are you?")
 
 
 @skill.intent("FineIntent")
@@ -58,7 +58,7 @@ def fine_intent(event):
 
 ## Deployment
 
-```shel
+```shell
 sls deploy
 ```
 
