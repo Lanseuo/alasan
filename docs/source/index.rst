@@ -8,4 +8,10 @@ Welcome to Alasan's documentation!
     first-steps/installation
     first-steps/first-skill
 
+.. toctree::
+    :glob:
+    :caption: Usage
+
+    usage/event
+
 Alasan helps you build Alexa skills on AWS Lambda using Python.
