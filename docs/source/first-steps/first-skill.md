@@ -34,7 +34,7 @@ Now we want to build a response for the intent. Therefore we use the class `Resp
 ```python
 @skill.launch()
 def launch():
-    return Response.speak("Welcome to Alasan. Say hello to me!")
+    return Response().speak("Welcome to Alasan. Say hello to me!")
 ```
 
 ## Custom Intent
@@ -52,7 +52,7 @@ This time we want to respond, but then the skill should end. Therefore we have t
 ```python
 @skill.intent("HelloIntent")
 def hello_intent():
-    return Response \
+    return Response() \
         .speak("Hello, thanks for chatting with me.") \
         .end_session()
 ```

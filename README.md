@@ -46,12 +46,12 @@ skill = Alasan()
 
 @skill.launch()
 def launch(event):
-    return Response.speak("Hello, how are you?")
+    return Response().speak("Hello, how are you?")
 
 
 @skill.intent("FineIntent")
 def fine_intent(event):
-    return Response \
+    return Response() \
         .speak("That's good to hear.") \
         .end_session()
 ```
